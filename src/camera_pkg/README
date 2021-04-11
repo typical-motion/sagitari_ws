@@ -1,0 +1,16 @@
+调用大华工业摄像头节点
+package:camera_pkg
+node_name:camera_pkg_node
+
+low_dims
+width:640
+height:480
+topic:DahuaCamera/LowDims
+frequency:120
+
+high_dims:
+width:1920
+height:1200
+topic:DahuaCamera/HighDims
+frequency:120
+
