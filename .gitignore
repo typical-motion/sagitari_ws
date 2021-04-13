@@ -52,3 +52,5 @@ CATKIN_IGNORE
 
 # Vscode Stuff
 .vscode
+
+.log

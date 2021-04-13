@@ -78,7 +78,6 @@ int main(int argc, char *argv[])
                             head_img.stamp = ros::Time(pFrameBuffer->nTimestamp * pow(10,-9),pFrameBuffer->nTimestamp - 1e9 *(int)(pFrameBuffer->nTimestamp * 1e-9));
                             //std::cout << pFrameBuffer->nTimestamp << std::endl;
                             sensor_msgs::ImagePtr msg_low = cv_bridge::CvImage(head_img,"bgr8",frame_mat).toImageMsg();
-                            //cout << "debug" << endl;
                             pub_low.publish(msg_low);
                         }
                         delete []pRGB24Buf;
