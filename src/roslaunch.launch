@@ -29,7 +29,9 @@
         <node name="uart_process_main" pkg="uart_process_2" type="rm2020_uart_2stm32" output="screen" respawn="true"></node>
     </group>
 
-    <node name="sagitari" pkg="sagitari" type="sagitari_node" output="screen" respawn="false" args="--usecam=1">
+    <node name="sagitari" pkg="sagitari" type="sagitari_node" output="screen" respawn="false" args="--usecam=0">
+    </node>
+    <node name="sagitari_debug" pkg="sagitari_debug" type="sagitari_debug_node" output="screen" respawn="false">
     </node>
 
 
