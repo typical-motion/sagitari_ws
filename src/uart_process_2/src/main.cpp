@@ -49,7 +49,7 @@ int main(int argc , char** argv)
 	{
 		std::cout << "write_fail" <<std::endl;
 	}
-	ros::Rate loop_rate(100);
+	ros::Rate loop_rate(150);
 	while(ros::ok())
 	{
 		if(ERROR_UART)
