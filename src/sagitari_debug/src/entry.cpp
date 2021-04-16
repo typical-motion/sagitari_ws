@@ -9,9 +9,8 @@ using namespace sensor_msgs;
 using namespace message_filters;
 ros::Publisher debugPublisher;
 
-auto fourcc = cv::VideoWriter::fourcc('m', 'p', '4', 'v');
-cv::VideoWriter video = cv::VideoWriter("/tmp/test2.mpg", CV_FOURCC('D', 'I', 'V', 'X'), 30, cv::Size(1000, 1000));
-
+cv::VideoWriter video = cv::VideoWriter("/tmp/test2.avi", CV_FOURCC('f', 'l', 'v', '1'), 30, cv::Size(1280, 1024));
+bool screenshot = false;
 void subSubCallback(const sensor_msgs::ImageConstPtr &msg)
 {
     cv_bridge::CvImagePtr cv_ptr;
@@ -29,6 +28,9 @@ void subSubCallback(const sensor_msgs::ImageConstPtr &msg)
     {
         video.release();
         exit(0);
+    } else if(key == 's')
+    {
+        screenshot = true;
     }
 }
 void subSubCallback2(const sensor_msgs::ImageConstPtr &msg)
@@ -36,6 +38,10 @@ void subSubCallback2(const sensor_msgs::ImageConstPtr &msg)
     cv_bridge::CvImagePtr cv_ptr;
     cv_ptr = cv_bridge::toCvCopy(msg, "bgr8");
     video << (cv_ptr->image);
+    if(screenshot) {
+        screenshot = false;
+        cv::imwrite("/tmp/screenshot_" + std::to_string(msg.get()->header.seq) + "_.jpg", cv_ptr->image);
+    }
 }
 
 int main(int argc, char *argv[])
