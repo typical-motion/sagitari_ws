@@ -9,7 +9,7 @@ using namespace sensor_msgs;
 using namespace message_filters;
 ros::Publisher debugPublisher;
 
-cv::VideoWriter video = cv::VideoWriter("/tmp/test2.avi", CV_FOURCC('f', 'l', 'v', '1'), 30, cv::Size(1280, 1024));
+cv::VideoWriter video = cv::VideoWriter("/tmp/test2.avi", CV_FOURCC('M', 'J', 'P', 'G'), 30, cv::Size(1280, 720));
 bool screenshot = false;
 void subSubCallback(const sensor_msgs::ImageConstPtr &msg)
 {
