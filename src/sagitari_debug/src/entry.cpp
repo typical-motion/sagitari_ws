@@ -9,13 +9,8 @@ using namespace sensor_msgs;
 using namespace message_filters;
 ros::Publisher debugPublisher;
 
-<<<<<<< HEAD
 cv::VideoWriter video = cv::VideoWriter("/tmp/test2.avi", CV_FOURCC('M', 'J', 'P', 'G'), 30, cv::Size(1280, 720));
 bool screenshot = false;
-=======
-cv::VideoWriter video = cv::VideoWriter("/tmp/test2.mpg", CV_FOURCC('D', 'I', 'V', 'X'), 30, cv::Size(1280, 720));
-int min_h = 0, max_h = 180, min_v = 0, max_v = 255, min_s = 0, max_s = 255;
->>>>>>> eb8cecd0a09c60b49e94abdcde8558fcc63bdf15
 void subSubCallback(const sensor_msgs::ImageConstPtr &msg)
 {
     cv::Mat showMat;
@@ -62,12 +57,14 @@ int main(int argc, char *argv[])
     image_transport::Subscriber subSub2 = it.subscribe("Sagitari/debugImage2", 1, subSubCallback2);
     debugPublisher = nh.advertise<uart_process_2::uart_receive>("uart_receive", 1);
     cv::namedWindow("Tracking");
+    /*
     cv::createTrackbar("H-min", "Tracking", &min_h, 255);
     cv::createTrackbar("H-max", "Tracking", &max_h, 255);
     cv::createTrackbar("S-min", "Tracking", &min_s, 255);
     cv::createTrackbar("S-max", "Tracking", &max_s, 255);
     cv::createTrackbar("V-min", "Tracking", &min_v, 255);
     cv::createTrackbar("V-max", "Tracking", &max_v, 255);
+    */
     ros::Rate rate(150);
     while (ros::ok())
     {
