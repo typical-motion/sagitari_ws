@@ -1,7 +1,18 @@
 #include "camera_pkg_daheng/Daheng_camera.h"
-
+cv::Mat camera_matrix = Mat::eye(3, 3, CV_64F);
+cv::Mat distortion({-0.217887,0.130727,0.003583,-0.002049,0.000000});
 int main(int argc, char *argv[])
 {
+    camera_matrix.at<double>(0, 0) = 1245.888261;
+    camera_matrix.at<double>(0, 1) = 0.000000;
+    camera_matrix.at<double>(0, 2) = 610.898929;
+    camera_matrix.at<double>(1, 0) = 0.000000;
+    camera_matrix.at<double>(1, 1) = 1247.771227;
+    camera_matrix.at<double>(1, 2) = 366.334594;
+    camera_matrix.at<double>(2, 0) = 0.000000;
+    camera_matrix.at<double>(2, 0) = 0.000000;
+    camera_matrix.at<double>(2, 2) = 1.000000;
+
     ros::init(argc, argv, "DahengCameraPicture_publish");
 	
     ros::NodeHandle nh;
@@ -66,7 +77,8 @@ int main(int argc, char *argv[])
                         VxInt32 DxStatus = DxRaw8toRGB24 (pFrameBuffer->pImgBuf, pRGB24Buf, pFrameBuffer->nWidth, pFrameBuffer->nHeight, cvtype, nBayerType, bFlip);
                         if(DxStatus == DX_OK)
                         {
-                            frame_mat = cv::Mat(pFrameBuffer->nHeight, pFrameBuffer->nWidth, CV_8UC3, pRGB24Buf);
+                            cv::Mat readMat = cv::Mat(pFrameBuffer->nHeight, pFrameBuffer->nWidth, CV_8UC3, pRGB24Buf);
+                            cv::undistort(readMat, frame_mat, camera_matrix, distortion);
                         }
                         if(!frame_mat.empty())
                         {
