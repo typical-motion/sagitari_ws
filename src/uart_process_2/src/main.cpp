@@ -19,7 +19,11 @@ uart_process_2::uart_send uart_Re_data;
 void subCallback(uart_process_2::uart_send uart_data)
 {
     send_message_AM(uart_data.xdata , uart_data.ydata , uart_data.zdata ,uart_data.tdata , (unsigned char)uart_data.Cmdata);
-	//cout << (unsigned char )uart_data.Cmdata << endl;
+	// std::cout << (unsigned char )uart_data.Cmdata << std::endl;
+
+	std::cout << "!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!" << uart_data.xdata << std::endl;
+	std::cout << "!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!" << uart_data.ydata << std::endl;
+
 }
 
 int main(int argc , char** argv)

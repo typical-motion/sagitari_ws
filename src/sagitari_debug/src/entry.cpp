@@ -7,9 +7,20 @@
 #include <iostream>
 using namespace sensor_msgs;
 using namespace message_filters;
+using namespace std;
+
 ros::Publisher debugPublisher;
 
-cv::VideoWriter video = cv::VideoWriter("/tmp/test2.avi", CV_FOURCC('M', 'J', 'P', 'G'), 30, cv::Size(1280, 720));
+cv::String videoNUM(cv::String Folder)
+{
+    vector<cv::String> filenames;
+    cv::glob(Folder, filenames );
+    cv::String FileNum = to_string(filenames.size() +1 );
+    return FileNum;
+}
+cv::String video_path = "/home/nuc/Videos/" + videoNUM("/home/nuc/Videos") + ".avi";
+cv::VideoWriter video = cv::VideoWriter(video_path , CV_FOURCC('M', 'J', 'P', 'G'), 30, cv::Size(1280, 720));
+
 bool screenshot = false;
 void subSubCallback(const sensor_msgs::ImageConstPtr &msg)
 {
@@ -20,7 +31,7 @@ void subSubCallback(const sensor_msgs::ImageConstPtr &msg)
     // cv::cvtColor(cv_ptr->image,showMat,CV_BGR2HSV);
     // cv::inRange(showMat, cv::Scalar(min_h, min_v, min_s), cv::Scalar(max_h, max_v, max_s), showMat);
     cv_ptr->image.copyTo(showMat);
-    cv::imshow("Tracking", showMat);
+    //cv::imshow("Tracking", showMat);
     int key = cv::waitKey(1);
     if (key == 'r')
     {
@@ -53,11 +64,11 @@ int main(int argc, char *argv[])
     ros::init(argc, argv, "sagitari_debug");
     ros::NodeHandle nh;
     image_transport::ImageTransport it(nh);
-    image_transport::Subscriber subSub = it.subscribe("Sagitari/debugImage", 1, subSubCallback);
+    //image_transport::Subscriber subSub = it.subscribe("Sagitari/debugImage", 1, subSubCallback);
     image_transport::Subscriber subSub2 = it.subscribe("Sagitari/debugImage2", 1, subSubCallback2);
     debugPublisher = nh.advertise<uart_process_2::uart_receive>("uart_receive", 1);
-    cv::namedWindow("Tracking");
     /*
+    cv::namedWindow("Tracking");
     cv::createTrackbar("H-min", "Tracking", &min_h, 255);
     cv::createTrackbar("H-max", "Tracking", &max_h, 255);
     cv::createTrackbar("S-min", "Tracking", &min_s, 255);
