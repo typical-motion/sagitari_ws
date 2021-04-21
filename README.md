@@ -16,7 +16,8 @@ tar xf Galaxy_Linux-x86_Gige-U3_32bits-64bits_1.2.1911.9122.tar.gz
 cd Galaxy_Linux-x86_Gige-U3_32bits-64bits_1.2.1911.9122
 sudo ./Galaxy_camera.run
 ```
-## Known Issues
-1. Tracker failed once scaled.  
-Maybe we can scale the image as well?
-solvePnP
+
+Install Eigen3
+```
+sudo apt-get install libeigen3-dev
+```
