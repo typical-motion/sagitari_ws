@@ -1,9 +1,9 @@
 #include <opencv2/opencv.hpp>
 #include <ros/ros.h>
 #include <cv_bridge/cv_bridge.h>
-#include <uart_process_2/uart_receive.h>
 #include <image_transport/image_transport.h>
 #include <message_filters/subscriber.h>
+#include <uart_process_2/uart_receive.h>
 #include <sagitari_debug/sagitari_img_debug.h>
 #include <iostream>
 using namespace sensor_msgs;
@@ -34,6 +34,7 @@ void debugImageCallback(const sagitari_debug::sagitari_img_debug &msg)
         // cv::cvtColor(cv_ptr->image,showMat,CV_BGR2HSV);
         // cv::inRange(showMat, cv::Scalar(min_h, min_v, min_s), cv::Scalar(max_h, max_v, max_s), showMat);
         cv_ptr->image.copyTo(showMat);
+        if(msg.title != "Tracking") return;
         cv::imshow(msg.title, showMat);
         int key = cv::waitKey(1);
         if (key == 'r')
