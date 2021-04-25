@@ -51,7 +51,7 @@ int main(int argc, char *argv[])
         }
         PGX_FRAME_BUFFER pFrameBuffer;
         status = SetBalanceRatio(hDevice, 1.3828, 1, 1.6992);//设置白平衡 
-        status = SetExposureTime(hDevice, 5000);//设置曝光
+        status = SetExposureTime(hDevice, 3500);//设置曝光
         double ExposureTime = GetExposureTime(hDevice);
         status = SetROI(hDevice, 1280,720);//设置ROI
         cout << "ExposureTime = " << ExposureTime << endl;
