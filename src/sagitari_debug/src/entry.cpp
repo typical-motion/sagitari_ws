@@ -39,6 +39,8 @@ void debugImageCallback(const sagitari_debug::sagitari_img_debug &msg)
         else if (key == 's')
         {
             screenshot = true;
+        } else if(key == 'p') {
+            cv::waitKey(0);
         }
     }
     catch (cv_bridge::Exception e)
