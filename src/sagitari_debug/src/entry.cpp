@@ -12,16 +12,6 @@ using namespace std;
 
 ros::Publisher debugPublisher;
 
-cv::String videoNUM(cv::String Folder)
-{
-    vector<cv::String> filenames;
-    cv::glob(Folder, filenames );
-    cv::String FileNum = to_string(filenames.size() +1 );
-    return FileNum;
-}
-cv::String video_path = "/home/nuc/Videos/" + videoNUM("/home/nuc/Videos") + ".avi";
-cv::VideoWriter video = cv::VideoWriter(video_path , CV_FOURCC('M', 'J', 'P', 'G'), 30, cv::Size(1280, 720));
-
 bool screenshot = false;
 void debugImageCallback(const sagitari_debug::sagitari_img_debug &msg)
 {
@@ -34,7 +24,9 @@ void debugImageCallback(const sagitari_debug::sagitari_img_debug &msg)
         // cv::cvtColor(cv_ptr->image,showMat,CV_BGR2HSV);
         // cv::inRange(showMat, cv::Scalar(min_h, min_v, min_s), cv::Scalar(max_h, max_v, max_s), showMat);
         cv_ptr->image.copyTo(showMat);
-        if(msg.title != "Tracking") return;
+        // if(msg.title != "Tracking") return;
+        // video << (cv_ptr->image);
+
         cv::imshow(msg.title, showMat);
         int key = cv::waitKey(1);
         if (key == 'r')
@@ -45,7 +37,6 @@ void debugImageCallback(const sagitari_debug::sagitari_img_debug &msg)
         }
         else if (key == 'q')
         {
-            video.release();
             exit(0);
         }
         else if (key == 's')
@@ -64,7 +55,7 @@ void originalImageCallback(const sensor_msgs::ImageConstPtr &msg)
 {
     cv_bridge::CvImagePtr cv_ptr;
     cv_ptr = cv_bridge::toCvCopy(msg, "bgr8");
-    video << (cv_ptr->image);
+    // video << (cv_ptr->image);
     if (screenshot)
     {
         screenshot = false;
