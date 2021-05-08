@@ -1,0 +1,14 @@
+<launch>
+    <!-- 
+        这个启动文件适用于本地调试。
+        以下节点将会被启动：
+        * 自瞄主程序节点
+        * 自瞄调试节点
+        * ROS 诊断监视器
+    -->
+    <node name="camera_file" pkg="camera_file" type="camera_file_node" output="screen" respawn="true"></node>
+    <node name="sagitari" pkg="sagitari" type="sagitari_node" output="screen" respawn="true" args="--usecam=0"></node>
+    <node name="sagitari_debug" pkg="sagitari_debug" type="sagitari_debug_node" output="screen" respawn="false"></node>
+    <node name="rqt_robot_monitor" pkg="rqt_robot_monitor" type="rqt_robot_monitor" output="screen" respawn="false"></node>
+
+</launch>

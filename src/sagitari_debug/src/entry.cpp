@@ -26,25 +26,7 @@ void debugImageCallback(const sagitari_debug::sagitari_img_debug &msg)
         cv_ptr->image.copyTo(showMat);
         // if(msg.title != "Tracking") return;
         // video << (cv_ptr->image);
-
         cv::imshow(msg.title, showMat);
-        int key = cv::waitKey(1);
-        if (key == 'r')
-        {
-            uart_process_2::uart_receive _data;
-            _data.pitch = -9080;
-            debugPublisher.publish(_data);
-        }
-        else if (key == 'q')
-        {
-            exit(0);
-        }
-        else if (key == 's')
-        {
-            screenshot = true;
-        } else if(key == 'p') {
-            cv::waitKey(0);
-        }
     }
     catch (cv_bridge::Exception e)
     {
@@ -80,10 +62,27 @@ int main(int argc, char *argv[])
     cv::createTrackbar("V-min", "Tracking", &min_v, 255);
     cv::createTrackbar("V-max", "Tracking", &max_v, 255);
     */
-    ros::Rate rate(150);
+    ros::Rate rate(30);
     while (ros::ok())
     {
         ros::spinOnce();
         rate.sleep();
+        int key = cv::waitKey(1);
+        if (key == 'r')
+        {
+            uart_process_2::uart_receive _data;
+            _data.pitch = -9080;
+            debugPublisher.publish(_data);
+        }
+        else if (key == 'q')
+        {
+            exit(0);
+        }
+        else if (key == 's')
+        {
+            screenshot = true;
+        } else if(key == 'p') {
+            cv::waitKey(0);
+        }
     }
 }
