@@ -4,7 +4,8 @@
 #include <ros/ros.h>
 #include <uart_process_2/uart_send.h>
 #include <uart_process_2/uart_receive.h>
-
+#include <diagnostic_updater/diagnostic_updater.h>
+ #include <diagnostic_updater/publisher.h>
 
 extern Date_message DOWN_DATA_AM;
 extern int UART_ID;
@@ -26,17 +27,29 @@ void subCallback(uart_process_2::uart_send uart_data)
 
 }
 
+void uart_diagnostic_update(diagnostic_updater::DiagnosticStatusWrapper& stat) {
+	if(ERROR_UART) {
+		stat.summary(diagnostic_msgs::DiagnosticStatus::ERROR, "UART failed to start.");
+	} else {
+		stat.summary(diagnostic_msgs::DiagnosticStatus::OK, "UART is running smoothly.");
+	}
+}
 int main(int argc , char** argv)
 {
 	ros::init(argc, argv, "uart_process_2");//ros初始化
 	ros::NodeHandle nh;
     ros::Subscriber sub = nh.subscribe("uart_send", 1, subCallback);//ros转接
 	pub = nh.advertise<uart_process_2::uart_receive>("uart_receive", 1);
+	diagnostic_updater::Updater updater;
+	updater.setHardwareID("none"); 
+	updater.setHardwareIDf("Device-%i-%i", 27, 46);
+	updater.add("Uart", uart_diagnostic_update);
     while(!INIT_UART())//done/64
 	{
 		ERROR_UART = true;
 		std::cout<<"open fail!"<<std::endl;
-		//return 0;
+		updater.force_update();
+		return -1;
 	}
 	ERROR_UART = true;
 	int ret;
@@ -53,7 +66,7 @@ int main(int argc , char** argv)
 	{
 		std::cout << "write_fail" <<std::endl;
 	}
-	ros::Rate loop_rate(150);
+	ros::Rate loop_rate(30);
 	while(ros::ok())
 	{
 		if(ERROR_UART)
@@ -65,6 +78,7 @@ int main(int argc , char** argv)
 			loop_rate.sleep();
 		}
 		ros::spinOnce();
+		updater.update();
 	};
     return 0;
 }

@@ -40,6 +40,7 @@
 #include <camera_info_manager/camera_info_manager.h>
 #include <sstream>
 #include <std_srvs/Empty.h>
+#include <cv_bridge/cv_bridge.h>
 
 namespace usb_cam {
 
@@ -51,7 +52,7 @@ public:
 
   // shared image message
   sensor_msgs::Image img_;
-  image_transport::CameraPublisher image_pub_;
+  image_transport::Publisher image_pub_;
 
   // parameters
   std::string video_device_name_, io_method_name_, pixel_format_name_, camera_name_, camera_info_url_;
@@ -86,7 +87,8 @@ public:
   {
     // advertise the main image topic
     image_transport::ImageTransport it(node_);
-    image_pub_ = it.advertiseCamera("image_raw", 1);
+    // image_pub_ = it.advertiseCamera("image_raw", 1);
+    image_pub_ = it.advertise("DahuaCamera/LowDims",1);
 
     // grab the parameters
     node_.param("video_device", video_device_name_, std::string("/dev/video0"));
@@ -228,6 +230,8 @@ public:
 
   bool take_and_send_image()
   {
+    /*
+    Use ROS advertiseCamera
     // grab the image
     cam_.grab_image(&img_);
 
@@ -237,7 +241,10 @@ public:
     ci->header.stamp = img_.header.stamp;
 
     // publish the image
-    image_pub_.publish(img_, *ci);
+    */
+   // Use ROS advertise
+    cam_.grab_image(&img_);
+    image_pub_.publish(img_);
 
     return true;
   }

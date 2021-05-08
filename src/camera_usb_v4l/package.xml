@@ -1,5 +1,5 @@
 <package>
-  <name>usb_cam</name>
+  <name>camera_usb_v4l</name>
   <version>0.3.6</version>
   <description>A ROS Driver for V4L USB Cameras</description>
 
