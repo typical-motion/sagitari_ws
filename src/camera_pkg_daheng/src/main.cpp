@@ -10,7 +10,7 @@ int main(int argc, char *argv[])
     camera_matrix.at<double>(1, 1) = 1247.771227;
     camera_matrix.at<double>(1, 2) = 366.334594;
     camera_matrix.at<double>(2, 0) = 0.000000;
-    camera_matrix.at<double>(2, 0) = 0.000000;
+    camera_matrix.at<double>(2, 1) = 0.000000;
     camera_matrix.at<double>(2, 2) = 1.000000;
 
     ros::init(argc, argv, "DahengCameraPicture_publish");
@@ -65,7 +65,7 @@ int main(int argc, char *argv[])
             cv::Mat frame_mat;
             while (ros::ok())
             {
-                status = GXDQBuf(hDevice, &pFrameBuffer, 1000);
+                status = GXDQBuf(hDevice, &pFrameBuffer, 3000);
                 if (pFrameBuffer->nStatus == GX_FRAME_STATUS_SUCCESS)
                 {
                     char* pRGB24Buf = new char[pFrameBuffer->nWidth * pFrameBuffer->nHeight * 3];
