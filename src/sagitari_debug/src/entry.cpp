@@ -21,12 +21,7 @@ void debugImageCallback(const sagitari_debug::sagitari_img_debug &msg)
         cv_bridge::CvImagePtr cv_ptr;
         cv_ptr = cv_bridge::toCvCopy(msg.image, "bgr8");
         cv::circle(cv_ptr->image, cv::Point(cv_ptr->image.cols, cv_ptr->image.rows) / 2, 25, cv::Scalar(255, 255, 255), 1);
-        // cv::cvtColor(cv_ptr->image,showMat,CV_BGR2HSV);
-        // cv::inRange(showMat, cv::Scalar(min_h, min_v, min_s), cv::Scalar(max_h, max_v, max_s), showMat);
-        cv_ptr->image.copyTo(showMat);
-        // if(msg.title != "Tracking") return;
-        // video << (cv_ptr->image);
-        cv::imshow(msg.title, showMat);
+        cv::imshow(msg.title, cv_ptr->image);
     }
     catch (cv_bridge::Exception e)
     {
