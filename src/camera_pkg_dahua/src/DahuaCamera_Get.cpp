@@ -34,7 +34,7 @@ int main(int argc, char **argv)
 	cout << "debug" << endl;
     //ros::Rate loop_rate(150);
 	Rect low_dims_rect(0,0,1024,480);
-	ros::Rate rate(150);
+	ros::Rate rate(200);
 	//setROI(cameraSptr,0,0,1920,1200);
     while(nh.ok())    
     {

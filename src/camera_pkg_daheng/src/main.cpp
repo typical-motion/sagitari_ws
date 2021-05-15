@@ -20,7 +20,7 @@ int main(int argc, char *argv[])
 	image_transport::ImageTransport it(nh);
     //image_transport::Publisher pub_high = it.advertise("DahuaCamera/HighDims",5);
     image_transport::Publisher pub_low = it.advertise("DahuaCamera/LowDims",1);
-    ros::Rate rate(150);
+    ros::Rate rate(200);
     GX_STATUS status = GX_STATUS_SUCCESS;
     
     cout << "Init Lib.........." << endl;
