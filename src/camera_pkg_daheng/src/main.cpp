@@ -75,7 +75,7 @@ int main(int argc, char *argv[])
                         if (DxStatus == DX_OK)
                         {
                             cv::Mat readMat = cv::Mat(pFrameBuffer->nHeight, pFrameBuffer->nWidth, CV_8UC3, pRGB24Buf);
-                            cv::undistort(readMat, frame_mat, camera_matrix, distortion);
+                            frame_mat = readMat;
                         }
                         if (!frame_mat.empty())
                         {
