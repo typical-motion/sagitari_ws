@@ -5,6 +5,7 @@
 #include <unistd.h>
 #include <iostream>
 #include <ros/ros.h>
+#include <uart_process_2/uart_send.h>
 #include <uart_process_2/uart_receive.h>
 #include <dirent.h>
 #define PATHNAME "/dev/ttyUSB0"//串口名称
@@ -15,6 +16,7 @@ typedef  char u8;
 
 extern ros::Publisher pub;//ros转发
 extern uart_process_2::uart_receive uart_Re_data;//ros转发数据
+extern uart_process_2::uart_send uart_Se_data;//ros转发数据
 
 int UART_ID;//串口句柄
 bool ERROR_UART = false;//串口错误标示
@@ -28,7 +30,7 @@ bool Verify_CRC16_Check_Sum_Judge(char *pchMessage,  int dwLength);
 bool set_uart_mode(speed_t speed, int vtime, int vmin);
 bool INIT_UART();
 unsigned short int CRC16_INIT_Judge = 0xffff;
-
+bool realtimeFrame = false;
 
 
 const char CRC8_INIT_Judge = 0xff;
@@ -162,7 +164,7 @@ void send_message_AM(float xdata, float ydata, float zdata, float tdata, uint8_t
 	DOWN_DATA_AM.Data.Am_data.Time_Interval = tdata;//延迟时间
 	DOWN_DATA_AM.Data.Am_data.Goal_State = Cmdata;//命令码
 	Append_CRC16_Check_Sum_Judge(( char *)&DOWN_DATA_AM, DATA_DOWN_Am);//CRC16校验位
-
+	realtimeFrame = true;
 }
 
 void receive_message_RE(Date_message* RE_data,char* coordinate_num)
@@ -325,7 +327,22 @@ void *thread_write(void* arg)
 				ERROR_UART = true;
 			}
 		}
+		realtimeFrame = false;
 		usleep(3000);
+		if(uart_Se_data.predictLatency) {
+			uart_Se_data.predictLatency = 0;
+			double unitYaw = uart_Se_data.predictYaw - uart_Se_data.curYaw;
+			double unitPitch = uart_Se_data.predictPitch - uart_Se_data.curPitch;
+			double predictYaw = uart_Se_data.curYaw;
+			double predictPitch = uart_Se_data.curPitch;
+			for(int i = 0; i < uart_Se_data.predictLatency && realtimeFrame; i+= 3) {
+				predictYaw += unitYaw;
+				predictPitch += unitPitch;
+				send_message_AM(predictYaw, predictPitch, uart_Se_data.curDistance, uart_Se_data.time + 3, (unsigned char)uart_Se_data.attackFlag);
+				write(UART_ID,(char*)&DOWN_DATA_AM,DATA_DOWN_Am);
+				usleep(3000);
+			}
+		}
 	}
 }
 
