@@ -30,7 +30,7 @@ bool Verify_CRC16_Check_Sum_Judge(char *pchMessage,  int dwLength);
 bool set_uart_mode(speed_t speed, int vtime, int vmin);
 bool INIT_UART();
 unsigned short int CRC16_INIT_Judge = 0xffff;
-bool realtimeFrame = false;
+extern bool predictingFrame;
 
 
 const char CRC8_INIT_Judge = 0xff;
@@ -164,7 +164,6 @@ void send_message_AM(float xdata, float ydata, float zdata, float tdata, uint8_t
 	DOWN_DATA_AM.Data.Am_data.Time_Interval = tdata;//延迟时间
 	DOWN_DATA_AM.Data.Am_data.Goal_State = Cmdata;//命令码
 	Append_CRC16_Check_Sum_Judge(( char *)&DOWN_DATA_AM, DATA_DOWN_Am);//CRC16校验位
-	realtimeFrame = true;
 }
 
 void receive_message_RE(Date_message* RE_data,char* coordinate_num)
@@ -299,6 +298,7 @@ void *thread_read(void *arg)//数据读取线程
 				}
 			}
 		}
+		/*
 		else
 		{
 			uart_Re_data.yaw = 0;
@@ -308,6 +308,7 @@ void *thread_read(void *arg)//数据读取线程
 			uart_Re_data.shoot_speed_mod = 0;
 			pub.publish(uart_Re_data);
 		}
+		*/
 	}
 }
 
@@ -327,18 +328,16 @@ void *thread_write(void* arg)
 				ERROR_UART = true;
 			}
 		}
-		realtimeFrame = false;
+		predictingFrame = true;
 		usleep(3000);
 		if(uart_Se_data.predictLatency) {
 			uart_Se_data.predictLatency = 0;
 			double unitYaw = uart_Se_data.predictYaw - uart_Se_data.curYaw;
 			double unitPitch = uart_Se_data.predictPitch - uart_Se_data.curPitch;
-			double predictYaw = uart_Se_data.curYaw;
-			double predictPitch = uart_Se_data.curPitch;
-			for(int i = 0; i < uart_Se_data.predictLatency && realtimeFrame; i+= 3) {
-				predictYaw += unitYaw;
-				predictPitch += unitPitch;
-				send_message_AM(predictYaw, predictPitch, uart_Se_data.curDistance, uart_Se_data.time + 3, (unsigned char)uart_Se_data.attackFlag);
+			unitYaw /= uart_Se_data.predictLatency / 3;
+			unitPitch /= uart_Se_data.predictLatency / 3;
+			for(int i = 0; i < uart_Se_data.predictLatency && predictingFrame; i+= 3) {
+				send_message_AM(unitYaw, unitPitch, uart_Se_data.curDistance, uart_Se_data.time + 3, (unsigned char)uart_Se_data.attackFlag);
 				write(UART_ID,(char*)&DOWN_DATA_AM,DATA_DOWN_Am);
 				usleep(3000);
 			}

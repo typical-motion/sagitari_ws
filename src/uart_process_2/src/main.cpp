@@ -18,6 +18,7 @@ extern void send_message_AM(float xdata, float ydata, float zdata, float tdata, 
 ros::Publisher pub;																				 //ros转发
 uart_process_2::uart_receive uart_Re_data;
 uart_process_2::uart_send uart_Se_data;
+bool predictingFrame = false;
 void subCallback(uart_process_2::uart_send uart_data)
 {
 	send_message_AM(uart_data.curYaw, uart_data.curPitch, uart_data.curDistance, uart_data.time, (unsigned char)uart_data.attackFlag);
@@ -26,6 +27,7 @@ void subCallback(uart_process_2::uart_send uart_data)
 	std::cout << "!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!! pitch" << uart_data.curPitch << std::endl;
 
 	uart_Se_data = uart_data;
+	predictingFrame = false;
 }
 int main(int argc, char **argv)
 {
