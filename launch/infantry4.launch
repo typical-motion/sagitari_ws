@@ -1,0 +1,27 @@
+<launch>
+    <!-- 
+        这个启动文件适用于4号步兵。
+        以下节点将会被启动：
+        * 大恒相机节点
+        * 相机录制节点
+        * 自瞄主程序节点
+        * 自瞄调试节点
+        * 串口通讯节点
+        * 打符主程序节点
+    -->
+    <!--
+    <node name="sagitari" pkg="sagitari" type="sagitari_node" output="log" respawn="true"></node>
+    <node name="sagitari_debug" pkg="sagitari_debug" type="sagitari_debug_node" output="screen" respawn="true"></node>
+    <node name="buff_main" pkg="buff_main" type="main" output="screen" respawn="true"></node>
+    <node name="camera_file" pkg="camera_file" type="camera_file_node" output="screen" respawn="true"></node>
+    <node name="color_img_debug" pkg="color_img_debug" type="color_img_debug_node" output="screen" respawn="true"></node>
+    <node name="gray_img_debug" pkg="gray_img_debug" type="gray_img_debug_node" output="screen" respawn="true"></node>
+    -->
+    <node name="daheng_camera" pkg="camera_pkg_daheng" type="camera_pkg_daheng_node" output="log" respawn="true"></node>
+    <node name="camera_recorder" pkg="camera_recorder" type="camera_recorder_node" output="screen" respawn="false"></node>
+    <node name="uart_process_main" pkg="uart_process_2" type="rm2020_uart_2stm32" output="screen" respawn="true"></node>
+    <node name="sagitari" pkg="sagitari" type="sagitari_node" output="log" respawn="true"></node>
+    <node name="sagitari_debug" pkg="sagitari_debug" type="sagitari_debug_node" output="screen" respawn="false"></node>
+    <node name="buff_main" pkg="buff_main" type="main" output="log" respawn="true"></node>
+
+</launch>

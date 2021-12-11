@@ -9,4 +9,6 @@ echo -----------------------
 killall roslaunch
 source devel/setup.bash
 cp armorboxContours.yml ~/.ros
+cp ArmourSvmModel.xml ~/.ros
+cp nosignal.jpg ~/.ros
 catkin_make && roslaunch launch/debug_file.launch

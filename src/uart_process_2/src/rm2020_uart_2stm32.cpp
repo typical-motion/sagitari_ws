@@ -8,8 +8,9 @@
 #include <uart_process_2/uart_send.h>
 #include <uart_process_2/uart_receive.h>
 #include <dirent.h>
-#define PATHNAME "/dev/ttyUSB0"//串口名称
-#define RandRate B115200//波特率(B开头)
+#define PATHNAME_0 "/dev/ttyUSB0"//串口名称
+#define PATHNAME_1 "/dev/ttyUSB1"//串口名称
+#define RandRate B921600//波特率(B开头)
 #define SEND_MESSAGE_LENGTH 23//上传数据长度
 #define RECEIVE_MESSAGE_LENGTH 17//下载数据长度
 typedef  char u8;
@@ -230,17 +231,22 @@ bool set_uart_mode(speed_t speed, int vtime, int vmin)//串口终端设置
 bool INIT_UART()//串口初始化
 {
 	static bool cout_flag = true;//显示错误信息
-	UART_ID = open(PATHNAME,O_RDWR | O_NOCTTY);//打开文件的方式打开串口
+	UART_ID = open(PATHNAME_0,O_RDWR | O_NOCTTY);//打开文件的方式打开串口
 	if(UART_ID < 0)
 	{
 		close(UART_ID);
-		if(cout_flag)
+		UART_ID = open(PATHNAME_1,O_RDWR | O_NOCTTY);//打开文件的方式打开串口
+		if(UART_ID < 0)
 		{
-			printf("open UART3 fail\n");
-			cout_flag = false;
+			close(UART_ID);
+			if(cout_flag)
+			{
+				printf("open UART3 fail\n");
+				cout_flag = false;
+			}
+			usleep(100000);
+			return false;
 		}
-		usleep(100000);
-		return false;
 	}
 	cout_flag = true;
 	printf("open UART3 success\n");

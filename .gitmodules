@@ -1,3 +1,3 @@
 [submodule "src/sagitari"]
 	path = src/sagitari
-	url = http://10.17.32.25:3000/lss233/sagitari.git
+	url = git@github.com:typical-motion/sagitari.git

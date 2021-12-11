@@ -6,7 +6,7 @@
         * 自瞄调试节点
     -->
     <node name="camera_file" pkg="camera_file" type="camera_file_node" output="screen" respawn="true"></node>
-    <node name="sagitari" pkg="sagitari" type="sagitari_node" output="screen" respawn="true" args="--usecam=0"></node>
+    <node name="sagitari" pkg="sagitari" type="sagitari_node" output="screen" respawn="false" args="--usecam=0"></node>
     <node name="sagitari_debug" pkg="sagitari_debug" type="sagitari_debug_node" output="screen" respawn="false"></node>
 
 </launch>
