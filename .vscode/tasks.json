@@ -1,0 +1,1183 @@
+{
+	"version": "2.0.0",
+	"command": "bash",
+	"args": [
+		"-c"
+	],
+	"tasks": [
+		{
+			"label": "Debug",
+			"type": "shell",
+			"args": [
+				"-c",
+				"catkin_make -C ${workspaceRoot} -DCMAKE_BUILD_TYPE=Debug"
+			],
+			"problemMatcher": [
+				{
+					"owner": "cpp",
+					"fileLocation": [
+						"absolute"
+					],
+					"pattern": {
+						"regexp": "^(.*):(\\d+):(\\d+):\\s+(warning|error):\\s+(.*)$",
+						"file": 1,
+						"line": 2,
+						"column": 3,
+						"severity": 4,
+						"message": 5
+					}
+				},
+				{
+					"owner": "cmake",
+					"fileLocation": [
+						"relative",
+						"${workspaceRoot}/src"
+					],
+					"pattern": [
+						{
+							"regexp": "^CMake\\s+(\\w+).*at\\s+(\\w.*):(\\d+)",
+							"file": 2,
+							"line": 3,
+							"severity": 1
+						},
+						{
+							"regexp": "^(.+)$",
+							"message": 1
+						}
+					]
+				},
+				{
+					"owner": "cmake",
+					"fileLocation": [
+						"absolute"
+					],
+					"pattern": [
+						{
+							"regexp": "^CMake\\s+(\\w+).*at\\s+(\\/.+):(\\d+)",
+							"file": 2,
+							"line": 3,
+							"severity": 1
+						},
+						{
+							"regexp": "^(.+)$",
+							"message": 1
+						}
+					]
+				},
+				{
+					"owner": "cmake",
+					"fileLocation": [
+						"absolute"
+					],
+					"pattern": [
+						{
+							"regexp": "^CMake\\s+(\\w+)",
+							"severity": 1
+						},
+						{
+							"regexp": "^(\\/.+):(\\d+)",
+							"file": 1,
+							"line": 2
+						},
+						{
+							"regexp": "^(.+)$",
+							"message": 1
+						}
+					]
+				},
+				{
+					"owner": "cmake",
+					"fileLocation": [
+						"relative",
+						"${workspaceRoot}/src"
+					],
+					"pattern": [
+						{
+							"regexp": "^\\s+(\\w.*):(\\d+)\\s+(.+)$",
+							"file": 1,
+							"line": 2,
+							"message": 3
+						}
+					]
+				}
+			]
+		},
+		{
+			"label": "Release",
+			"type": "shell",
+			"args": [
+				"-c",
+				"catkin_make -C ${workspaceRoot}"
+			],
+			"problemMatcher": [
+				{
+					"owner": "cpp",
+					"fileLocation": [
+						"absolute"
+					],
+					"pattern": {
+						"regexp": "^(.*):(\\d+):(\\d+):\\s+(warning|error):\\s+(.*)$",
+						"file": 1,
+						"line": 2,
+						"column": 3,
+						"severity": 4,
+						"message": 5
+					}
+				},
+				{
+					"owner": "cmake",
+					"fileLocation": [
+						"relative",
+						"${workspaceRoot}/src"
+					],
+					"pattern": [
+						{
+							"regexp": "^CMake\\s+(\\w+).*at\\s+(\\w.*):(\\d+)",
+							"file": 2,
+							"line": 3,
+							"severity": 1
+						},
+						{
+							"regexp": "^(.+)$",
+							"message": 1
+						}
+					]
+				},
+				{
+					"owner": "cmake",
+					"fileLocation": [
+						"absolute"
+					],
+					"pattern": [
+						{
+							"regexp": "^CMake\\s+(\\w+).*at\\s+(\\/.+):(\\d+)",
+							"file": 2,
+							"line": 3,
+							"severity": 1
+						},
+						{
+							"regexp": "^(.+)$",
+							"message": 1
+						}
+					]
+				},
+				{
+					"owner": "cmake",
+					"fileLocation": [
+						"absolute"
+					],
+					"pattern": [
+						{
+							"regexp": "^CMake\\s+(\\w+)",
+							"severity": 1
+						},
+						{
+							"regexp": "^(\\/.+):(\\d+)",
+							"file": 1,
+							"line": 2
+						},
+						{
+							"regexp": "^(.+)$",
+							"message": 1
+						}
+					]
+				},
+				{
+					"owner": "cmake",
+					"fileLocation": [
+						"relative",
+						"${workspaceRoot}/src"
+					],
+					"pattern": [
+						{
+							"regexp": "^\\s+(\\w.*):(\\d+)\\s+(.+)$",
+							"file": 1,
+							"line": 2,
+							"message": 3
+						}
+					]
+				}
+			]
+		},
+		{
+			"label": "Debug (isolated)",
+			"type": "shell",
+			"args": [
+				"-c",
+				"catkin_make_isolated -C ${workspaceRoot} -DCMAKE_BUILD_TYPE=Debug"
+			],
+			"problemMatcher": [
+				{
+					"owner": "cpp",
+					"fileLocation": [
+						"absolute"
+					],
+					"pattern": {
+						"regexp": "^(.*):(\\d+):(\\d+):\\s+(warning|error):\\s+(.*)$",
+						"file": 1,
+						"line": 2,
+						"column": 3,
+						"severity": 4,
+						"message": 5
+					}
+				},
+				{
+					"owner": "cmake",
+					"fileLocation": [
+						"relative",
+						"${workspaceRoot}/src"
+					],
+					"pattern": [
+						{
+							"regexp": "^CMake\\s+(\\w+).*at\\s+(\\w.*):(\\d+)",
+							"file": 2,
+							"line": 3,
+							"severity": 1
+						},
+						{
+							"regexp": "^(.+)$",
+							"message": 1
+						}
+					]
+				},
+				{
+					"owner": "cmake",
+					"fileLocation": [
+						"absolute"
+					],
+					"pattern": [
+						{
+							"regexp": "^CMake\\s+(\\w+).*at\\s+(\\/.+):(\\d+)",
+							"file": 2,
+							"line": 3,
+							"severity": 1
+						},
+						{
+							"regexp": "^(.+)$",
+							"message": 1
+						}
+					]
+				},
+				{
+					"owner": "cmake",
+					"fileLocation": [
+						"absolute"
+					],
+					"pattern": [
+						{
+							"regexp": "^CMake\\s+(\\w+)",
+							"severity": 1
+						},
+						{
+							"regexp": "^(\\/.+):(\\d+)",
+							"file": 1,
+							"line": 2
+						},
+						{
+							"regexp": "^(.+)$",
+							"message": 1
+						}
+					]
+				},
+				{
+					"owner": "cmake",
+					"fileLocation": [
+						"relative",
+						"${workspaceRoot}/src"
+					],
+					"pattern": [
+						{
+							"regexp": "^\\s+(\\w.*):(\\d+)\\s+(.+)$",
+							"file": 1,
+							"line": 2,
+							"message": 3
+						}
+					]
+				}
+			]
+		},
+		{
+			"label": "Release (isolated)",
+			"type": "shell",
+			"args": [
+				"-c",
+				"catkin_make_isolated -C ${workspaceRoot}"
+			],
+			"problemMatcher": [
+				{
+					"owner": "cpp",
+					"fileLocation": [
+						"absolute"
+					],
+					"pattern": {
+						"regexp": "^(.*):(\\d+):(\\d+):\\s+(warning|error):\\s+(.*)$",
+						"file": 1,
+						"line": 2,
+						"column": 3,
+						"severity": 4,
+						"message": 5
+					}
+				},
+				{
+					"owner": "cmake",
+					"fileLocation": [
+						"relative",
+						"${workspaceRoot}/src"
+					],
+					"pattern": [
+						{
+							"regexp": "^CMake\\s+(\\w+).*at\\s+(\\w.*):(\\d+)",
+							"file": 2,
+							"line": 3,
+							"severity": 1
+						},
+						{
+							"regexp": "^(.+)$",
+							"message": 1
+						}
+					]
+				},
+				{
+					"owner": "cmake",
+					"fileLocation": [
+						"absolute"
+					],
+					"pattern": [
+						{
+							"regexp": "^CMake\\s+(\\w+).*at\\s+(\\/.+):(\\d+)",
+							"file": 2,
+							"line": 3,
+							"severity": 1
+						},
+						{
+							"regexp": "^(.+)$",
+							"message": 1
+						}
+					]
+				},
+				{
+					"owner": "cmake",
+					"fileLocation": [
+						"absolute"
+					],
+					"pattern": [
+						{
+							"regexp": "^CMake\\s+(\\w+)",
+							"severity": 1
+						},
+						{
+							"regexp": "^(\\/.+):(\\d+)",
+							"file": 1,
+							"line": 2
+						},
+						{
+							"regexp": "^(.+)$",
+							"message": 1
+						}
+					]
+				},
+				{
+					"owner": "cmake",
+					"fileLocation": [
+						"relative",
+						"${workspaceRoot}/src"
+					],
+					"pattern": [
+						{
+							"regexp": "^\\s+(\\w.*):(\\d+)\\s+(.+)$",
+							"file": 1,
+							"line": 2,
+							"message": 3
+						}
+					]
+				}
+			]
+		},
+		{
+			"label": "Debug (remote)",
+			"type": "shell",
+			"args": [
+				"-c",
+				"echo \"Remote Arguments not configured!\""
+			],
+			"problemMatcher": [
+				{
+					"owner": "cpp",
+					"fileLocation": [
+						"absolute"
+					],
+					"pattern": {
+						"regexp": "^(.*):(\\d+):(\\d+):\\s+(warning|error):\\s+(.*)$",
+						"file": 1,
+						"line": 2,
+						"column": 3,
+						"severity": 4,
+						"message": 5
+					}
+				},
+				{
+					"owner": "cmake",
+					"fileLocation": [
+						"relative",
+						"${workspaceRoot}/src"
+					],
+					"pattern": [
+						{
+							"regexp": "^CMake\\s+(\\w+).*at\\s+(\\w.*):(\\d+)",
+							"file": 2,
+							"line": 3,
+							"severity": 1
+						},
+						{
+							"regexp": "^(.+)$",
+							"message": 1
+						}
+					]
+				},
+				{
+					"owner": "cmake",
+					"fileLocation": [
+						"absolute"
+					],
+					"pattern": [
+						{
+							"regexp": "^CMake\\s+(\\w+).*at\\s+(\\/.+):(\\d+)",
+							"file": 2,
+							"line": 3,
+							"severity": 1
+						},
+						{
+							"regexp": "^(.+)$",
+							"message": 1
+						}
+					]
+				},
+				{
+					"owner": "cmake",
+					"fileLocation": [
+						"absolute"
+					],
+					"pattern": [
+						{
+							"regexp": "^CMake\\s+(\\w+)",
+							"severity": 1
+						},
+						{
+							"regexp": "^(\\/.+):(\\d+)",
+							"file": 1,
+							"line": 2
+						},
+						{
+							"regexp": "^(.+)$",
+							"message": 1
+						}
+					]
+				},
+				{
+					"owner": "cmake",
+					"fileLocation": [
+						"relative",
+						"${workspaceRoot}/src"
+					],
+					"pattern": [
+						{
+							"regexp": "^\\s+(\\w.*):(\\d+)\\s+(.+)$",
+							"file": 1,
+							"line": 2,
+							"message": 3
+						}
+					]
+				}
+			]
+		},
+		{
+			"label": "Release (remote)",
+			"type": "shell",
+			"args": [
+				"-c",
+				"echo \"Remote Arguments not configured!\""
+			],
+			"problemMatcher": [
+				{
+					"owner": "cpp",
+					"fileLocation": [
+						"absolute"
+					],
+					"pattern": {
+						"regexp": "^(.*):(\\d+):(\\d+):\\s+(warning|error):\\s+(.*)$",
+						"file": 1,
+						"line": 2,
+						"column": 3,
+						"severity": 4,
+						"message": 5
+					}
+				},
+				{
+					"owner": "cmake",
+					"fileLocation": [
+						"relative",
+						"${workspaceRoot}/src"
+					],
+					"pattern": [
+						{
+							"regexp": "^CMake\\s+(\\w+).*at\\s+(\\w.*):(\\d+)",
+							"file": 2,
+							"line": 3,
+							"severity": 1
+						},
+						{
+							"regexp": "^(.+)$",
+							"message": 1
+						}
+					]
+				},
+				{
+					"owner": "cmake",
+					"fileLocation": [
+						"absolute"
+					],
+					"pattern": [
+						{
+							"regexp": "^CMake\\s+(\\w+).*at\\s+(\\/.+):(\\d+)",
+							"file": 2,
+							"line": 3,
+							"severity": 1
+						},
+						{
+							"regexp": "^(.+)$",
+							"message": 1
+						}
+					]
+				},
+				{
+					"owner": "cmake",
+					"fileLocation": [
+						"absolute"
+					],
+					"pattern": [
+						{
+							"regexp": "^CMake\\s+(\\w+)",
+							"severity": 1
+						},
+						{
+							"regexp": "^(\\/.+):(\\d+)",
+							"file": 1,
+							"line": 2
+						},
+						{
+							"regexp": "^(.+)$",
+							"message": 1
+						}
+					]
+				},
+				{
+					"owner": "cmake",
+					"fileLocation": [
+						"relative",
+						"${workspaceRoot}/src"
+					],
+					"pattern": [
+						{
+							"regexp": "^\\s+(\\w.*):(\\d+)\\s+(.+)$",
+							"file": 1,
+							"line": 2,
+							"message": 3
+						}
+					]
+				}
+			]
+		},
+		{
+			"label": "Debug (remote isolated)",
+			"type": "shell",
+			"args": [
+				"-c",
+				"echo \"Remote Arguments not configured!\""
+			],
+			"problemMatcher": [
+				{
+					"owner": "cpp",
+					"fileLocation": [
+						"absolute"
+					],
+					"pattern": {
+						"regexp": "^(.*):(\\d+):(\\d+):\\s+(warning|error):\\s+(.*)$",
+						"file": 1,
+						"line": 2,
+						"column": 3,
+						"severity": 4,
+						"message": 5
+					}
+				},
+				{
+					"owner": "cmake",
+					"fileLocation": [
+						"relative",
+						"${workspaceRoot}/src"
+					],
+					"pattern": [
+						{
+							"regexp": "^CMake\\s+(\\w+).*at\\s+(\\w.*):(\\d+)",
+							"file": 2,
+							"line": 3,
+							"severity": 1
+						},
+						{
+							"regexp": "^(.+)$",
+							"message": 1
+						}
+					]
+				},
+				{
+					"owner": "cmake",
+					"fileLocation": [
+						"absolute"
+					],
+					"pattern": [
+						{
+							"regexp": "^CMake\\s+(\\w+).*at\\s+(\\/.+):(\\d+)",
+							"file": 2,
+							"line": 3,
+							"severity": 1
+						},
+						{
+							"regexp": "^(.+)$",
+							"message": 1
+						}
+					]
+				},
+				{
+					"owner": "cmake",
+					"fileLocation": [
+						"absolute"
+					],
+					"pattern": [
+						{
+							"regexp": "^CMake\\s+(\\w+)",
+							"severity": 1
+						},
+						{
+							"regexp": "^(\\/.+):(\\d+)",
+							"file": 1,
+							"line": 2
+						},
+						{
+							"regexp": "^(.+)$",
+							"message": 1
+						}
+					]
+				},
+				{
+					"owner": "cmake",
+					"fileLocation": [
+						"relative",
+						"${workspaceRoot}/src"
+					],
+					"pattern": [
+						{
+							"regexp": "^\\s+(\\w.*):(\\d+)\\s+(.+)$",
+							"file": 1,
+							"line": 2,
+							"message": 3
+						}
+					]
+				}
+			]
+		},
+		{
+			"label": "Release (remote isolated)",
+			"type": "shell",
+			"args": [
+				"-c",
+				"echo \"Remote Arguments not configured!\""
+			],
+			"problemMatcher": [
+				{
+					"owner": "cpp",
+					"fileLocation": [
+						"absolute"
+					],
+					"pattern": {
+						"regexp": "^(.*):(\\d+):(\\d+):\\s+(warning|error):\\s+(.*)$",
+						"file": 1,
+						"line": 2,
+						"column": 3,
+						"severity": 4,
+						"message": 5
+					}
+				},
+				{
+					"owner": "cmake",
+					"fileLocation": [
+						"relative",
+						"${workspaceRoot}/src"
+					],
+					"pattern": [
+						{
+							"regexp": "^CMake\\s+(\\w+).*at\\s+(\\w.*):(\\d+)",
+							"file": 2,
+							"line": 3,
+							"severity": 1
+						},
+						{
+							"regexp": "^(.+)$",
+							"message": 1
+						}
+					]
+				},
+				{
+					"owner": "cmake",
+					"fileLocation": [
+						"absolute"
+					],
+					"pattern": [
+						{
+							"regexp": "^CMake\\s+(\\w+).*at\\s+(\\/.+):(\\d+)",
+							"file": 2,
+							"line": 3,
+							"severity": 1
+						},
+						{
+							"regexp": "^(.+)$",
+							"message": 1
+						}
+					]
+				},
+				{
+					"owner": "cmake",
+					"fileLocation": [
+						"absolute"
+					],
+					"pattern": [
+						{
+							"regexp": "^CMake\\s+(\\w+)",
+							"severity": 1
+						},
+						{
+							"regexp": "^(\\/.+):(\\d+)",
+							"file": 1,
+							"line": 2
+						},
+						{
+							"regexp": "^(.+)$",
+							"message": 1
+						}
+					]
+				},
+				{
+					"owner": "cmake",
+					"fileLocation": [
+						"relative",
+						"${workspaceRoot}/src"
+					],
+					"pattern": [
+						{
+							"regexp": "^\\s+(\\w.*):(\\d+)\\s+(.+)$",
+							"file": 1,
+							"line": 2,
+							"message": 3
+						}
+					]
+				}
+			]
+		},
+		{
+			"label": "Debug (catkin)",
+			"type": "shell",
+			"args": [
+				"-c",
+				"catkin build -w ${workspaceRoot} -DCMAKE_BUILD_TYPE=Debug"
+			],
+			"problemMatcher": [
+				{
+					"owner": "cpp",
+					"fileLocation": [
+						"absolute"
+					],
+					"pattern": {
+						"regexp": "^(.*):(\\d+):(\\d+):\\s+(warning|error):\\s+(.*)$",
+						"file": 1,
+						"line": 2,
+						"column": 3,
+						"severity": 4,
+						"message": 5
+					}
+				},
+				{
+					"owner": "cmake",
+					"fileLocation": [
+						"relative",
+						"${workspaceRoot}/src"
+					],
+					"pattern": [
+						{
+							"regexp": "^CMake\\s+(\\w+).*at\\s+(\\w.*):(\\d+)",
+							"file": 2,
+							"line": 3,
+							"severity": 1
+						},
+						{
+							"regexp": "^(.+)$",
+							"message": 1
+						}
+					]
+				},
+				{
+					"owner": "cmake",
+					"fileLocation": [
+						"absolute"
+					],
+					"pattern": [
+						{
+							"regexp": "^CMake\\s+(\\w+).*at\\s+(\\/.+):(\\d+)",
+							"file": 2,
+							"line": 3,
+							"severity": 1
+						},
+						{
+							"regexp": "^(.+)$",
+							"message": 1
+						}
+					]
+				},
+				{
+					"owner": "cmake",
+					"fileLocation": [
+						"absolute"
+					],
+					"pattern": [
+						{
+							"regexp": "^CMake\\s+(\\w+)",
+							"severity": 1
+						},
+						{
+							"regexp": "^(\\/.+):(\\d+)",
+							"file": 1,
+							"line": 2
+						},
+						{
+							"regexp": "^(.+)$",
+							"message": 1
+						}
+					]
+				},
+				{
+					"owner": "cmake",
+					"fileLocation": [
+						"relative",
+						"${workspaceRoot}/src"
+					],
+					"pattern": [
+						{
+							"regexp": "^\\s+(\\w.*):(\\d+)\\s+(.+)$",
+							"file": 1,
+							"line": 2,
+							"message": 3
+						}
+					]
+				}
+			]
+		},
+		{
+			"label": "Release (catkin)",
+			"type": "shell",
+			"args": [
+				"-c",
+				"catkin build -w ${workspaceRoot}"
+			],
+			"problemMatcher": [
+				{
+					"owner": "cpp",
+					"fileLocation": [
+						"absolute"
+					],
+					"pattern": {
+						"regexp": "^(.*):(\\d+):(\\d+):\\s+(warning|error):\\s+(.*)$",
+						"file": 1,
+						"line": 2,
+						"column": 3,
+						"severity": 4,
+						"message": 5
+					}
+				},
+				{
+					"owner": "cmake",
+					"fileLocation": [
+						"relative",
+						"${workspaceRoot}/src"
+					],
+					"pattern": [
+						{
+							"regexp": "^CMake\\s+(\\w+).*at\\s+(\\w.*):(\\d+)",
+							"file": 2,
+							"line": 3,
+							"severity": 1
+						},
+						{
+							"regexp": "^(.+)$",
+							"message": 1
+						}
+					]
+				},
+				{
+					"owner": "cmake",
+					"fileLocation": [
+						"absolute"
+					],
+					"pattern": [
+						{
+							"regexp": "^CMake\\s+(\\w+).*at\\s+(\\/.+):(\\d+)",
+							"file": 2,
+							"line": 3,
+							"severity": 1
+						},
+						{
+							"regexp": "^(.+)$",
+							"message": 1
+						}
+					]
+				},
+				{
+					"owner": "cmake",
+					"fileLocation": [
+						"absolute"
+					],
+					"pattern": [
+						{
+							"regexp": "^CMake\\s+(\\w+)",
+							"severity": 1
+						},
+						{
+							"regexp": "^(\\/.+):(\\d+)",
+							"file": 1,
+							"line": 2
+						},
+						{
+							"regexp": "^(.+)$",
+							"message": 1
+						}
+					]
+				},
+				{
+					"owner": "cmake",
+					"fileLocation": [
+						"relative",
+						"${workspaceRoot}/src"
+					],
+					"pattern": [
+						{
+							"regexp": "^\\s+(\\w.*):(\\d+)\\s+(.+)$",
+							"file": 1,
+							"line": 2,
+							"message": 3
+						}
+					]
+				}
+			]
+		},
+		{
+			"label": "Debug (remote catkin)",
+			"type": "shell",
+			"args": [
+				"-c",
+				"echo \"Remote Arguments not configured!\""
+			],
+			"problemMatcher": [
+				{
+					"owner": "cpp",
+					"fileLocation": [
+						"absolute"
+					],
+					"pattern": {
+						"regexp": "^(.*):(\\d+):(\\d+):\\s+(warning|error):\\s+(.*)$",
+						"file": 1,
+						"line": 2,
+						"column": 3,
+						"severity": 4,
+						"message": 5
+					}
+				},
+				{
+					"owner": "cmake",
+					"fileLocation": [
+						"relative",
+						"${workspaceRoot}/src"
+					],
+					"pattern": [
+						{
+							"regexp": "^CMake\\s+(\\w+).*at\\s+(\\w.*):(\\d+)",
+							"file": 2,
+							"line": 3,
+							"severity": 1
+						},
+						{
+							"regexp": "^(.+)$",
+							"message": 1
+						}
+					]
+				},
+				{
+					"owner": "cmake",
+					"fileLocation": [
+						"absolute"
+					],
+					"pattern": [
+						{
+							"regexp": "^CMake\\s+(\\w+).*at\\s+(\\/.+):(\\d+)",
+							"file": 2,
+							"line": 3,
+							"severity": 1
+						},
+						{
+							"regexp": "^(.+)$",
+							"message": 1
+						}
+					]
+				},
+				{
+					"owner": "cmake",
+					"fileLocation": [
+						"absolute"
+					],
+					"pattern": [
+						{
+							"regexp": "^CMake\\s+(\\w+)",
+							"severity": 1
+						},
+						{
+							"regexp": "^(\\/.+):(\\d+)",
+							"file": 1,
+							"line": 2
+						},
+						{
+							"regexp": "^(.+)$",
+							"message": 1
+						}
+					]
+				},
+				{
+					"owner": "cmake",
+					"fileLocation": [
+						"relative",
+						"${workspaceRoot}/src"
+					],
+					"pattern": [
+						{
+							"regexp": "^\\s+(\\w.*):(\\d+)\\s+(.+)$",
+							"file": 1,
+							"line": 2,
+							"message": 3
+						}
+					]
+				}
+			]
+		},
+		{
+			"label": "Release (remote catkin)",
+			"type": "shell",
+			"args": [
+				"-c",
+				"echo \"Remote Arguments not configured!\""
+			],
+			"problemMatcher": [
+				{
+					"owner": "cpp",
+					"fileLocation": [
+						"absolute"
+					],
+					"pattern": {
+						"regexp": "^(.*):(\\d+):(\\d+):\\s+(warning|error):\\s+(.*)$",
+						"file": 1,
+						"line": 2,
+						"column": 3,
+						"severity": 4,
+						"message": 5
+					}
+				},
+				{
+					"owner": "cmake",
+					"fileLocation": [
+						"relative",
+						"${workspaceRoot}/src"
+					],
+					"pattern": [
+						{
+							"regexp": "^CMake\\s+(\\w+).*at\\s+(\\w.*):(\\d+)",
+							"file": 2,
+							"line": 3,
+							"severity": 1
+						},
+						{
+							"regexp": "^(.+)$",
+							"message": 1
+						}
+					]
+				},
+				{
+					"owner": "cmake",
+					"fileLocation": [
+						"absolute"
+					],
+					"pattern": [
+						{
+							"regexp": "^CMake\\s+(\\w+).*at\\s+(\\/.+):(\\d+)",
+							"file": 2,
+							"line": 3,
+							"severity": 1
+						},
+						{
+							"regexp": "^(.+)$",
+							"message": 1
+						}
+					]
+				},
+				{
+					"owner": "cmake",
+					"fileLocation": [
+						"absolute"
+					],
+					"pattern": [
+						{
+							"regexp": "^CMake\\s+(\\w+)",
+							"severity": 1
+						},
+						{
+							"regexp": "^(\\/.+):(\\d+)",
+							"file": 1,
+							"line": 2
+						},
+						{
+							"regexp": "^(.+)$",
+							"message": 1
+						}
+					]
+				},
+				{
+					"owner": "cmake",
+					"fileLocation": [
+						"relative",
+						"${workspaceRoot}/src"
+					],
+					"pattern": [
+						{
+							"regexp": "^\\s+(\\w.*):(\\d+)\\s+(.+)$",
+							"file": 1,
+							"line": 2,
+							"message": 3
+						}
+					]
+				}
+			]
+		},
+		{
+			"label": "Remote Deploy",
+			"type": "shell",
+			"args": [
+				"-c",
+				"echo \"Remote Arguments not configured!\""
+			],
+			"problemMatcher": [],
+			"group": "build"
+		}
+	]
+}

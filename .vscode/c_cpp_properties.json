@@ -1,0 +1,24 @@
+{
+  "configurations": [
+    {
+      "browse": {
+        "databaseFilename": "",
+        "limitSymbolsToIncludedHeaders": true
+      },
+      "includePath": [
+        "/home/nuc/sagitari_ws/devel/include/**",
+        "/home/nuc/catkin_vision/devel/include/**",
+        "/opt/ros/kinetic/include/**",
+        "/home/nuc/sagitari_ws/src/camera_pkg_daheng/include/**",
+        "/home/nuc/catkin_vision/src/rm2020_pinwheel_detect/include/**",
+        "/home/nuc/sagitari_ws/src/sagitari/include/**",
+        "/home/nuc/catkin_vision/src/uart_process/include/**",
+        "/home/nuc/sagitari_ws/src/uart_process_2/include/**",
+        "/home/nuc/sagitari_ws/src/usb_cam/include/**",
+        "/usr/include/**"
+      ],
+      "name": "ROS"
+    }
+  ],
+  "version": 4
+}
