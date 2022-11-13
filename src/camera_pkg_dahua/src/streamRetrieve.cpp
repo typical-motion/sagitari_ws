@@ -34,7 +34,7 @@ void StreamRetrieve::threadProc()
 	{
 		CFrame frame;
 
-		//ï¿½ï¿½È¡Ò»Ö¡
+		//»ñÈ¡Ò»Ö¡
 		if (!m_streamSptr)
 		{
 			printf("m_streamPtr is NULL.\n");
@@ -47,7 +47,7 @@ void StreamRetrieve::threadProc()
 			continue;
 		}
 
-		//ï¿½Ð¶ï¿½Ö¡ï¿½ï¿½ï¿½ï¿½Ð§ï¿½ï¿½
+		//ÅÐ¶ÏÖ¡µÄÓÐÐ§ÐÔ
 		bool isValid = frame.valid();
 		if (!isValid)
 		{
@@ -55,8 +55,8 @@ void StreamRetrieve::threadProc()
 			continue;
 		}
 
-		//ï¿½ï¿½Ó¡FrameID
-		printf("get frame %lu successfully thread ID :%d\n", frame.getBlockId(), CThread::getCurrentThreadID());
+		//´òÓ¡FrameID
+		printf("get frame %lld successfully thread ID :%d\n", frame.getBlockId(), CThread::getCurrentThreadID());
 	}
 
 }

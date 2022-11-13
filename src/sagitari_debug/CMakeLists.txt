@@ -12,7 +12,7 @@ find_package(catkin REQUIRED COMPONENTS message_generation roscpp cv_bridge rosp
 ## System dependencies are found with CMake's conventions
 # find_package(Boost REQUIRED COMPONENTS system)
 set(OpenCV_DIR /mnt/d/opencv/opencv-4.5.1-compiled-wsl)
-find_package(OpenCV REQUIRED)
+#find_package(OpenCV REQUIRED)
 
 
 ## Uncomment this if the package has a setup.py. This macro ensures

@@ -1,0 +1,39 @@
+<launch>
+    <!-- Begin: 设置启动节点 -->
+    <arg name="dahua_camera" default="0" /> <!--视频：大华相机-->
+    <arg name="daheng_camera" default="1" /> <!--视频：大恒相机-->
+    <arg name="file_camera" default="1" /> <!--视频：文件数据源-->
+    <arg name="uart_process" default="0" /> <!--串口通信 -->
+    <!-- End: 设置启动节点 -->
+
+    <!--大华相机-->
+    
+    <group if="$(arg dahua_camera)">
+        <node name="dahua_camera" pkg="camera_pkg" type="camera_pkg_node" output="screen" respawn="true"></node>
+    </group>
+
+    <!--大恒相机-->
+    <group if="$(arg daheng_camera)">
+        <node name="daheng_camera" pkg="camera_pkg_daheng" type="camera_pkg_daheng_node" output="screen" respawn="true"></node>
+    </group>
+
+    <!--文件数据源-->
+    <!--
+    <group if="$(arg file_camera)">
+        <node name="daheng_camera" pkg="camera_pkg_daheng" type="camera_pkg_daheng_node" output="screen" respawn="true"></node>
+    </group>
+    -->
+
+    <!-->串口通讯-->
+    <group if="$(arg uart_process)">
+        <node name="uart_process_main" pkg="uart_process_2" type="rm2020_uart_2stm32" output="screen" respawn="true"></node>
+    </group>
+    <node name="camera_recorder" pkg="camera_recorder" type="camera_recorder_node" output="screen" respawn="true">
+    </node>
+    <node name="sagitari" pkg="sagitari" type="sagitari_node" output="screen" respawn="false" args="--usecam=0">
+    </node>
+    <node name="sagitari_debug" pkg="sagitari_debug" type="sagitari_debug_node" output="screen" respawn="false">
+    </node>
+
+
+</launch>

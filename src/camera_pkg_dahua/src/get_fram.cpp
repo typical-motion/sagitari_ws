@@ -308,7 +308,7 @@ IStreamSourcePtr &get_connect_with_camare(ICameraPtr &cameraSptr)
 //	displayDeviceInfo(vCameraPtrList);
 //	int cameraIndex = selectDevice(vCameraPtrList.size());
 //	cameraSptr = vCameraPtrList[cameraIndex];
-	
+	        std::cout << "!!!!!!!!!!!!!!!!" << std::endl;
 	cameraSptr = vCameraPtrList[0];//0,cameraindex
 	/* GigEÏà»úÊ±£¬Á¬½ÓÇ°ÉèÖÃÏà»úIpÓëÍø¿¨´¦ÓÚÍ¬Ò»Íø¶ÎÉÏ */
 	if( ICamera::typeGige == cameraSptr->getType())

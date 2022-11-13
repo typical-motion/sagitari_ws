@@ -3,10 +3,14 @@
 #include <cv_bridge/cv_bridge.h>
 #include <image_transport/image_transport.h>
 #include <message_filters/subscriber.h>
+#include <uart_process_2/uart_receive.h>
+#include <sagitari_debug/sagitari_img_debug.h>
 #include <iostream>
 using namespace sensor_msgs;
 using namespace message_filters;
 using namespace std;
+
+ros::Publisher debugPublisher;
 
 cv::String videoNUM(cv::String Folder)
 {
@@ -16,7 +20,7 @@ cv::String videoNUM(cv::String Folder)
     return FileNum;
 }
 cv::String video_path = "record_" + videoNUM("record_*.avi") + ".avi";
-cv::VideoWriter video = cv::VideoWriter(video_path , CV_FOURCC('M', 'J', 'P', 'G'), 30, cv::Size(1280, 720));
+cv::VideoWriter video = cv::VideoWriter(video_path , cv::VideoWriter::fourcc('M', 'J', 'P', 'G'), 30, cv::Size(1024, 480));
 
 void originalImageCallback(const sensor_msgs::ImageConstPtr &msg)
 {
@@ -31,6 +35,7 @@ int main(int argc, char *argv[])
     ros::NodeHandle nh;
     image_transport::ImageTransport it(nh);
     image_transport::Subscriber originalImageSubscriber = it.subscribe("DahuaCamera/LowDims", 1, originalImageCallback);
+    debugPublisher = nh.advertise<uart_process_2::uart_receive>("uart_receive", 1);
     ros::Rate rate(150);
     while (ros::ok())
     {
