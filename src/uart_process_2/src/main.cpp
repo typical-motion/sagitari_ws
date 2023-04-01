@@ -34,13 +34,21 @@ int main(int argc, char **argv)
 	ros::init(argc, argv, "uart_process_2"); //ros初始化
 	ros::NodeHandle nh;
 	ros::Subscriber sub = nh.subscribe("uart_send", 1, subCallback); //ros转接
-	pub = nh.advertise<uart_process_2::uart_receive>("uart_receive", 1);
-	while (!INIT_UART()) //done/64
-	{
-		ERROR_UART = true;
-		std::cout << "open fail!" << std::endl;
-		return -1;
-	}
+	pub = nh.advertise<uart_process_2::uart_send>("uart_send", 1);
+
+	//////////////////////////////////
+	// static tf::TransformBroadcaster br;
+	// tf::Transform transform;
+	// //geometry_msgs::Quaternion qw;
+	// tf::Quaternion q;
+	//////////////////////////////////
+
+	// while (!INIT_UART()) //done/64
+	// {
+	// 	ERROR_UART = true;
+	// 	std::cout << "open fail!" << std::endl;
+	// 	return -1;
+	// }
 	ERROR_UART = true;
 	int ret;
 	pthread_t Read_Uart;
@@ -59,14 +67,25 @@ int main(int argc, char **argv)
 	ros::Rate loop_rate(200);
 	while (ros::ok())
 	{
-		if (ERROR_UART)
-		{
-			if (INIT_UART()) //done
-			{
-				ERROR_UART = false;
-			}
-			loop_rate.sleep();
-		}
+		// if (ERROR_UART)
+		// {
+		// 	if (INIT_UART()) //done
+		// 	{
+		// 		ERROR_UART = false;
+		// 	}
+		// 	loop_rate.sleep();
+		// }
+
+		////////////////////////
+		// transform.setOrigin(tf::Vector3(tvec_x,tvec_y,tvec_z));
+		// transform.setRotation(q);
+		// std::cout<<"发布tf变换: sendTransform函数"<<std::endl;
+		// br.sendTransform(tf::StampedTransform(transform,ros::Time::now(),"base_link","link1"));
+		// std::cout<<"输出的四元数为： w="<<q[3]<<",x="<<q[0]<<",y="<<q[1]<<",z="<<q[2]<<std::endl;
+		////////////////////////
+
+		pub.publish(uart_Se_data);
+		uart_Se_data.curYaw ++;
 		ros::spinOnce();
 	};
 	return 0;

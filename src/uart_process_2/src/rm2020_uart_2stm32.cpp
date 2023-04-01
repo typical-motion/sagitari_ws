@@ -164,6 +164,7 @@ void send_message_AM(float xdata, float ydata, float zdata, float tdata, uint8_t
 	DOWN_DATA_AM.Data.Am_data.Time_Interval = tdata;//延迟时间
 	DOWN_DATA_AM.Data.Am_data.Goal_State = Cmdata;//命令码
 	Append_CRC16_Check_Sum_Judge(( char *)&DOWN_DATA_AM, DATA_DOWN_Am);//CRC16校验位
+	std::cout << Append_CRC16_Check_Sum_Judge << std::endl;
 }
 
 void receive_message_RE(Date_message* RE_data,char* coordinate_num)

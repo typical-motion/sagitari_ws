@@ -1,3 +1,0 @@
-<launch> 
-	<node name="camera_pkg_dahua_node" pkg="camera_pkg" type="camera_pkg_dahua_node" output="screen"/> 
- </launch>
